@@ -1,7 +1,7 @@
 ## 📋 React flip card   
 A lightweight React component flip card.  
 
-[Demo](https://react-flip-cards.onrender.com)
+### [Demo](https://stackblitz.com/edit/react-flip-cards-mzrnxa?file=index.js)
 
 ![bundlephobia badge](https://badgen.net/npm/v/react-flip-cards) ![bundlephobia badge](https://badgen.net/bundlephobia/min/react-flip-cards) ![bundlephobia badge](https://badgen.net/bundlephobia/minzip/react-flip-cards)
 
@@ -33,7 +33,7 @@ const App = () => {
           fontTitle="ReactJs"
           fontSubTitle="web application"
           backTitle="ReactJs app"
-          backText="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
+          backText="Lorem Ipsum is simply dummy text"
         />
       </div>
 
@@ -42,7 +42,7 @@ const App = () => {
           fontTitle="Svelte"
           fontSubTitle="web application"
           backTitle="Svelte app"
-          backText="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
+          backText="Lorem Ipsum is simply dummy text"
         >
           <a href="https://github.com/haikelfazzani">Link</a>
         </FlipCard>
