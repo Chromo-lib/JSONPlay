@@ -4,12 +4,15 @@
   height: 100%;  
 }
 
-.flip__container h1 { 
+.flip__container h2 { 
   font-family: fantasy;
-  font-size: 3.5rem !important; 
   letter-spacing: 4px;
-  margin: 0;
   text-transform: uppercase;
+}
+
+.flip__container .front h2 { 
+  font-size: 3.5rem !important; 
+  margin: 0;  
 }
 
 .card__subtitle {
@@ -35,13 +38,12 @@
   padding: 2em;
   background-color: #313131;
   border-radius: 5px;
-
+  text-align: center;
   transition-duration: .5s;
   transition-property: transform, opacity;
 }
 
 .flip__container .front { background-blend-mode: overlay;}
-
 /* rotation */
 .flip__container > .front {
   transform: rotateY(0deg);
@@ -62,4 +64,10 @@
 .flip__container:hover > .back {
   opacity: 1;
   transform: rotateY(0deg);
+}
+
+@media screen and (max-width: 768px) {
+  .flip__container .front h2 {
+    font-size: 1.5rem !important;
+  }
 }

@@ -12,7 +12,7 @@ npm i react-flip-cards
 ### Usage
 ```js
 import FlipCard from "react-flip-cards";
-import '../node_modules/react-flip-cards/build/index.css'; // required
+import 'react-flip-cards/build/index.css'; // required
 
 <FlipCard img={imgLink} // all props
   fontTitle="ReactJs"

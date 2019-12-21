@@ -11,7 +11,7 @@ const App = () => {
     <div className="container">
       <div className="col-3">
         <FlipCard img={imgLink}
-          fontTitle="ReactJs"
+          fontTitle="ReactJs application"
           fontSubTitle="web application"
           backTitle="ReactJs app"
           backText="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
