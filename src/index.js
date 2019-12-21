@@ -18,31 +18,14 @@ const App = () => {
         />
       </div>
 
-
       <div className="col-3">
-        <FlipCard img={imgLink}
-          fontTitle="Angular"
-          fontSubTitle="web application"
-          backTitle="Angular app"
-          backText="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
-        />
-      </div>
-
-      <div className="col-3">
-        <FlipCard img={imgLink}
-          fontTitle="VueJs"
-          fontSubTitle="web application"
-          backTitle="VueJs app"
-          backText="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
-        />
-      </div>
-
-      <div className="col-3">
-        <FlipCard img={imgLink}
+        <FlipCard
           fontTitle="Svelte"
           fontSubTitle="web application"
           backTitle="Svelte app"
           backText="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
+          fgColor="red"
+          bgColor="red"
         >
           <a href="https://github.com/haikelfazzani">Link</a>
         </FlipCard>

@@ -14,11 +14,13 @@ npm i react-flip-cards
 import FlipCard from "react-flip-cards";
 import '../node_modules/react-flip-cards/build/index.css'; // required
 
-<FlipCard img={imgLink}
+<FlipCard img={imgLink} // all props
   fontTitle="ReactJs"
   fontSubTitle="web application"
   backTitle="ReactJs app"
   backText="Lorem Ipsum is simply dummy text of the printing"
+  fgColor="#ff0000" // front card background color
+  bgColor="#ff0000" // back card background color
 />
 ```
 
@@ -38,11 +40,13 @@ const App = () => {
       </div>
 
       <div className="col-3">
-        <FlipCard img={imgLink} // with children
+        <FlipCard // with children
           fontTitle="Svelte"
           fontSubTitle="web application"
           backTitle="Svelte app"
           backText="Lorem Ipsum is simply dummy text"
+          fgColor="red"
+          bgColor="red"
         >
           <a href="https://github.com/haikelfazzani">Link</a>
         </FlipCard>
