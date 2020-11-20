@@ -1,67 +1,43 @@
 {
-  "name": "react-flip-cards",
-  "version": "0.0.4",
-  "description": "A lightweight React component flip card.",
-  "main": "build/index.cjs.js",
-  "module": "build/index.esm.js",
-  "files": [
-    "build"
-  ],
+  "name": "jsonofy",
+  "version": "1.0.0",
+  "description": "JSON Viewer browser extension..",
+  "main": "index.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "clean": "rimraf -rf build/*",
-    "build-npm": "npm run clean && rollup -c"
+    "watch": "rollup -c -w",
+    "build": "rollup -c"
   },
-  "dependencies": {
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
-    "react-scripts": "3.3.0"
-  },
-  "peerDependencies": {
-    "react": ">=16.8.6"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/haikelfazzani/react-flip-cards.git"
-  },
-  "bugs": {
-    "url": "https://github.com/haikelfazzani/react-flip-cards/issues"
-  },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ],
   "keywords": [
-    "react",
-    "flip",
-    "card",
-    "component"
+    "json",
+    "format",
+    "viewer",
+    "browser",
+    "extension",
+    "dev-tools"
   ],
-  "author": "Haikel Fazzani <haikel.fazzani@gmail.com>",
-  "contributors": [
-    {
-      "name": "Haikel Fazzani",
-      "email": "haikel.fazzani@gmail.com"
-    }
-  ],
-  "devDependencies": {
-    "@babel/cli": "^7.7.0",
-    "@babel/preset-react": "^7.7.0",
-    "react": "^16.11.0",
-    "react-dom": "^16.11.0",
-    "react-scripts": "^3.2.0",
-    "rimraf": "^3.0.0",
-    "rollup": "^1.26.3",
-    "rollup-plugin-babel": "^4.3.3",
-    "rollup-plugin-babel-minify": "^9.1.1",
-    "rollup-plugin-cleanup": "^3.1.1",
-    "rollup-plugin-css": "^1.0.10",
-    "rollup-plugin-scss": "^1.0.2"
+  "author": "Haikel Fazzani",
+  "license": "MIT",
+  "dependencies": {
+    "inferno": "^7.4.6",
+    "jsnview": "^1.0.6",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
   },
-  "license": "MIT"
+  "devDependencies": {
+    "@babel/core": "^7.11.6",
+    "@babel/plugin-transform-runtime": "^7.11.5",
+    "@babel/preset-env": "^7.11.5",
+    "@babel/preset-react": "^7.10.4",
+    "@rollup/plugin-babel": "^5.2.1",
+    "@rollup/plugin-commonjs": "^15.1.0",
+    "@rollup/plugin-node-resolve": "^9.0.0",
+    "@rollup/plugin-replace": "^2.3.3",
+    "babel-plugin-inferno": "^6.1.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react-app": "^9.1.2",
+    "rollup": "^2.28.2",
+    "rollup-plugin-copy": "^3.3.0",
+    "rollup-plugin-postcss": "^3.1.8",
+    "rollup-plugin-terser": "^7.0.2"
+  }
 }

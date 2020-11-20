@@ -1,15 +1,19 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
-  "icons": [
-    {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
-    }
-  ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "manifest_version": 2,
+  "name": "jsonofy",
+  "description": "JSON viewer.",
+  "version": "1.0.0",
+  "icons": {
+    "128": "icons/icon128.png",
+    "64": "icons/icon64.png",
+    "32": "icons/icon32.png"
+  },
+  "browser_action": {
+    "default_title": "jsonofy",
+    "default_popup": "popup.html",
+    "browser_style": true
+  },
+  "permissions": [
+    "activeTab"
+  ]
 }

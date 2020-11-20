@@ -1,60 +1,22 @@
-## 📋 React flip card   
-A lightweight React component flip card.  
+<div align="center">
+  <img src="public/icons/icon128.png"><br /><br />
+  <h4 style="margin-top:0">jsonofy is free and lightweight Browser Extension</h4>
+  <h4>🔥 JSON viewer...🔥</h4>
 
-### [Demo](https://stackblitz.com/edit/react-flip-cards-mzrnxa?file=index.js)
+</div>
 
-![bundlephobia badge](https://badgen.net/npm/v/react-flip-cards) ![bundlephobia badge](https://badgen.net/bundlephobia/min/react-flip-cards) ![bundlephobia badge](https://badgen.net/bundlephobia/minzip/react-flip-cards)
+<p align="center">
+  <a href="#" rel="nofollow">
+    <img src="https://i.imgur.com/kMH6r1a.png" style="max-width:100%;"></a>
 
-```
-npm i react-flip-cards
-```
+  <a href="#" rel="nofollow">
+    <img src="https://i.imgur.com/n49Wiu2.png" style="max-width:100%;"></a>
+  <br><br>
+</p>
 
-### Usage
-```js
-import FlipCard from "react-flip-cards";
-import 'react-flip-cards/build/index.css'; // required
+### Capture
+![](capture.png)
 
-<FlipCard img={imgLink} // all props
-  fontTitle="ReactJs"
-  fontSubTitle="web application"
-  backTitle="ReactJs app"
-  backText="Lorem Ipsum is simply dummy text of the printing"
-  fgColor="#ff0000" // front card background color
-  bgColor="#ff0000" // back card background color
-/>
-```
 
-### Examples :
-```js
-const App = () => {
-
-  return (
-    <div className="container">
-      <div className="col-3">
-        <FlipCard img={imgLink} // without children
-          fontTitle="ReactJs"
-          fontSubTitle="web application"
-          backTitle="ReactJs app"
-          backText="Lorem Ipsum is simply dummy text"
-        />
-      </div>
-
-      <div className="col-3">
-        <FlipCard // with children
-          fontTitle="Svelte"
-          fontSubTitle="web application"
-          backTitle="Svelte app"
-          backText="Lorem Ipsum is simply dummy text"
-          fgColor="red"
-          bgColor="red"
-        >
-          <a href="https://github.com/haikelfazzani">Link</a>
-        </FlipCard>
-      </div>
-    </div>
-  );
-}
-```
-
-### License
+# License
 MIT
