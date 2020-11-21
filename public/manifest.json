@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
-  "name": "jsonofy",
-  "description": "JSON viewer.",
+  "name": "JSONPLay",
+  "description": "JSON viewer and playground.",
   "version": "1.0.0",
   "icons": {
     "128": "icons/icon128.png",
@@ -9,7 +9,7 @@
     "32": "icons/icon32.png"
   },
   "browser_action": {
-    "default_title": "jsonofy",
+    "default_title": "JSONPLay",
     "default_popup": "popup.html",
     "browser_style": true
   },

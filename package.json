@@ -1,5 +1,5 @@
 {
-  "name": "jsonofy",
+  "name": "JSONPLay",
   "version": "1.0.0",
   "description": "JSON Viewer browser extension..",
   "main": "index.js",
