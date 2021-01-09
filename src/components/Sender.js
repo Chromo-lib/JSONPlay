@@ -40,7 +40,6 @@ export default function Sender () {
 
   return (<div className="container">
     <header>
-
       <form onSubmit={onSubmit}>
         <select name="method">
           <option value="get">Get</option>
