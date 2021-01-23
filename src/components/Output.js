@@ -6,6 +6,8 @@ import "ace-builds/src-noconflict/mode-json5";
 import "ace-builds/src-noconflict/theme-monokai";
 
 import formatSize from '../utils/formatSize';
+import LocalHistory from '../utils/LocalHistory';
+import Spinner from './Spinner';
 
 export default function Output () {
 
@@ -13,13 +15,7 @@ export default function Output () {
   const [state, setState] = useState({
     output: '',
     headers: '',
-    infos: {
-      status: 200,
-      statusText: '',
-      time: '0',
-      size: '0 bytes'
-    },
-    errors: 'No errors'
+    errors: ''
   });
 
   const [currentTab, setCurrentTab] = useState('output');
@@ -35,36 +31,39 @@ export default function Output () {
         options = { url, method, data: data };
       }
 
+      let sender = { ...globalState.sender, isDataSubmitted: false };
+
       axios(options)
         .then(rsp => {
-          let sender = { ...globalState.sender, isDataSubmitted: false };
-
           let tmpH = globalState.history.slice(0);
 
           if (!tmpH.find(h => h.sender.method === options.method && h.url === options.url)) {
-            tmpH.unshift({
-              sender,
-              url: options.url,
-              date: new Date().toString()
-            });
+            let req = { sender, url: options.url, date: new Date().toString() };
+            tmpH.unshift(req);
+            LocalHistory.add(req);
           }
 
-          setGlobalState({ ...globalState, sender, history: tmpH });
-
-          setState({
-            output: rsp.data,
-            headers: rsp.headers,
+          setGlobalState({
+            ...globalState,
+            sender,
+            history: tmpH,
             infos: {
               status: rsp.status,
               statusText: rsp.statusText,
               time: Date.now() - startTime + ' ms',
               size: formatSize(JSON.stringify(rsp.data).length)
-            },
-            errors: 'No errors'
+            }
+          });
+
+          setState({
+            output: rsp.data,
+            headers: rsp.headers,
+            errors: ''
           });
         })
         .catch(e => {
           setState({ ...state, errors: e });
+          setGlobalState({ ...globalState, sender });
         });
     }
   }, [globalState.sender.isDataSubmitted, globalState.sender.url]);
@@ -93,5 +92,7 @@ export default function Output () {
         highlightActiveLine={false}
       />
     </div>
+
+    {globalState.sender.isDataSubmitted && <Spinner />}
   </div>);
 }

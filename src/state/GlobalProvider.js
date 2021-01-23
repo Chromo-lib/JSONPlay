@@ -1,4 +1,5 @@
 import React, { createContext, useState } from 'react';
+import LocalHistory from '../utils/LocalHistory';
 
 const initState = {
   sender: {
@@ -8,10 +9,11 @@ const initState = {
     headers: {
       "Accept": "application/json",
       "Content-type": "application/json; charset=UTF-8"
-    },    
+    },
     isDataSubmitted: false
   },
-  history:[]
+  infos: { status: 200, statusText: '-', time: '0', size: '0' },
+  history: LocalHistory.getAll()
 }
 
 const GlobalContext = createContext();

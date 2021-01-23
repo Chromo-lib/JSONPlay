@@ -46,6 +46,9 @@ export default function Sender () {
           <option value="post">post</option>
           <option value="put">put</option>
           <option value="delete">delete</option>
+          <option value="patch">patch</option>
+          <option value="head">head</option>
+          <option value="options">options</option>
         </select>
 
         <input type="url" name="url" placeholder="https://jsonplaceholder.typicode.com/todos/1" required />
