@@ -8,16 +8,12 @@ import "ace-builds/src-noconflict/theme-monokai";
 import formatSize from '../utils/formatSize';
 import LocalHistory from '../utils/LocalHistory';
 import Spinner from './Spinner';
+import formatNumber from '../utils/formatNumber';
 
 export default function Output () {
 
   const { globalState, setGlobalState } = useContext(GlobalContext);
-  const [state, setState] = useState({
-    output: '',
-    headers: '',
-    errors: ''
-  });
-
+  const [state, setState] = useState({ output: '', headers: '', errors: '' });
   const [currentTab, setCurrentTab] = useState('output');
 
   useEffect(() => {
@@ -50,7 +46,7 @@ export default function Output () {
             infos: {
               status: rsp.status,
               statusText: rsp.statusText,
-              time: Date.now() - startTime + ' ms',
+              time: formatNumber(Date.now() - startTime),
               size: formatSize(JSON.stringify(rsp.data).length)
             }
           });
