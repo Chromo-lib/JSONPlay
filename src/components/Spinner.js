@@ -1,10 +1,11 @@
 import React from 'react';
 import './Spinner.css';
 
-export default function Spinner () {
+export default function Spinner ({children}) {
   return <div className="spinner-container">
     <div className="spinner-border"></div>
     <p className="mb-0 text-center">Sending Request</p>
     <p className="mt-0 text-center">Please wait a moment...</p>
+    {children}
   </div>;
 }

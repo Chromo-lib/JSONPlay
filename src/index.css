@@ -31,17 +31,21 @@ main{
 
 footer {
   display: flex;
-  justify-content: flex-end;
-  height: 20px; background-color: #0984ff; justify-content: flex-end; 
+  justify-content: space-between;
+  align-items: center;
+  height: 20px; 
+  font-size: 12px;
+  padding-left: 10px;
+  background-color: #004c98;
   text-transform: uppercase;
 }
 
 footer p{ 
-  margin: 0 !important;
-  font-size: 12px;
+  margin: 0 !important;  
   letter-spacing: 1px;
-  height: 100%;
-  border-left: 2px solid var(--bg-main); padding: 0 15px;}
+  padding: 0 15px;}
+
+  footer a {color: #fff; text-decoration: none; }
 
 main>div {
   width: 100%;
@@ -99,16 +103,43 @@ ul {list-style: none; margin: 0; padding: 0;}
 cursor: pointer;
 letter-spacing: 1px;}
 
-select:hover,button:hover,.badge:hover {
+.link:hover {opacity: .8; cursor: pointer;}
+
+svg {margin-right: 5px}
+
+button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 15px;
+  background: #e91e63;
+    border-radius: 4px;
+  box-shadow: 0px 1.6px 3.6px rgba(0,0,0,0.25),0px 0px 2.9px rgba(0,0,0,0.21);
+}
+
+button svg {margin: 0}
+
+.bg-inherit {background-color: inherit; border-radius: 0;}
+
+select:hover,button:hover,.badge:hover,.bg-inherit:hover {
   background-color: rgba(255, 255, 255, 0.116);
   transition: background-color .25s;
 }
 
-.link:hover {opacity: .8; cursor: pointer;}
+.side-btns {
+  display: none;
+  position: fixed;
+  top: 60px;
+  right: 20px;
+  background-color: #0f1011;
+}
 
-svg {margin-right: 5px}
+.output:hover .side-btns{ display: block;}
+
+.bg-bleu {background-color: #0984ff;}
 /**************************************/
 .vertical-align {display: flex; align-items: center; }
+.horizontal-align {display: flex; flex-direction: column; }
 
 .bg-rose {    background-color: #E91E63}
 
@@ -125,7 +156,9 @@ svg {margin-right: 5px}
 .p-0 {padding:0 !important; }
 
 .mb-0 {margin-bottom: 0;}
+.mb-10 {margin-bottom: 10px;}
 .ml-10 {margin-left: 10px;}
+.mr-10 {margin-right: 10px;}
 
 .border-bottom {border-bottom: 1px solid var(--border);}
 

@@ -52,7 +52,7 @@ export default function Sender () {
         </select>
 
         <input type="url" name="url" placeholder="https://jsonplaceholder.typicode.com/todos/1" required />
-        <button type="submit">Send</button>
+        <button type="submit" className="bg-inherit">Send</button>
       </form>
 
     </header>
