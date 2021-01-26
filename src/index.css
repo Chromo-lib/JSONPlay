@@ -126,20 +126,14 @@ select:hover,button:hover,.badge:hover,.bg-inherit:hover {
   transition: background-color .25s;
 }
 
-.side-btns {
-  display: none;
-  position: fixed;
-  top: 60px;
-  right: 20px;
-  background-color: #0f1011;
-}
-
-.output:hover .side-btns{ display: block;}
-
 .bg-bleu {background-color: #0984ff;}
+
+.box-shad-none>* {box-shadow: none;}
 /**************************************/
 .vertical-align {display: flex; align-items: center; }
 .horizontal-align {display: flex; flex-direction: column; }
+
+.justify-between {justify-content: space-between;}
 
 .bg-rose {    background-color: #E91E63}
 
@@ -154,6 +148,7 @@ select:hover,button:hover,.badge:hover,.bg-inherit:hover {
 
 .p-15 {padding: 10px 15px; }
 .p-0 {padding:0 !important; }
+.pr-0 {padding-right:0 !important; }
 
 .mb-0 {margin-bottom: 0;}
 .mb-10 {margin-bottom: 10px;}

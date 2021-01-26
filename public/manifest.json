@@ -1,12 +1,13 @@
 {
   "manifest_version": 2,
   "name": "JSONPLay",
-  "description": "JSON viewer and playground.",
+  "description": "API Testing Tool, JSON viewer and playground.",
   "version": "1.0.0",
   "icons": {
-    "128": "icons/icon128.png",
-    "64": "icons/icon64.png",
-    "32": "icons/icon32.png"
+    "512": "icons/512.png",
+    "128": "icons/128.png",
+    "64": "icons/64.png",
+    "32": "icons/32.png"
   },
   "browser_action": {
     "default_title": "JSONPLay",

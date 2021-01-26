@@ -7,7 +7,6 @@ function popup () {
   chrome.tabs.query({ currentWindow: true, active: true }, function (tabs) {
     let activeTab = tabs[0];
     chrome.tabs.create({ url: 'index.html?url=' + activeTab.url });
-    btnDetect.innerHTML = 'ACTIVATED';
   });
 }
 

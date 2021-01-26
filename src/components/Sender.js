@@ -51,7 +51,9 @@ export default function Sender () {
           <option value="options">options</option>
         </select>
 
-        <input type="url" name="url" placeholder="https://jsonplaceholder.typicode.com/todos/1" required />
+        <input type="url" name="url" 
+        defaultValue={window.location.search.slice(5)}
+        placeholder="https://jsonplaceholder.typicode.com/todos/1" required />
         <button type="submit" className="bg-inherit">Send</button>
       </form>
 

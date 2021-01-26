@@ -24,7 +24,7 @@ function App () {
 
     <footer>
       <div className="vertical-align">
-        <a className="mr-10" href="https://github.com/haikelfazzani/json-viewer-extension">JSONPlay v1.0.0</a>
+        <a className="mr-10" href="https://github.com/haikelfazzani/json-viewer-extension">JSONPlay v1</a>
         <a className="mr-10 vertical-align" href="https://github.com/haikelfazzani/json-viewer-extension/issues">
           <svg xmlns="http://www.w3.org/2000/svg" width="14" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
@@ -36,9 +36,9 @@ function App () {
       </div>
       <div className="vertical-align">
         {Object.keys(globalState.infos).map(info => <p className="ml-10 vertical-align" key={info}>
-        <svg xmlns="http://www.w3.org/2000/svg" width="14" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-</svg>{info}: {globalState.infos[info]}
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>{info}: {globalState.infos[info]}
         </p>)}
       </div>
     </footer>

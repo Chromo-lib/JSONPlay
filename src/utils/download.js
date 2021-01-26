@@ -1,6 +1,6 @@
 export default function download (data, filename="jsonplay.json") {
   let element = document.createElement('a');
-  element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(data));
+  element.setAttribute('href', 'data:text/json;charset=utf-8,' + encodeURIComponent(data));
   element.setAttribute('download', filename);
 
   element.style.display = 'none';
