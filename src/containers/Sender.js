@@ -3,11 +3,14 @@ import { GlobalContext } from '../state/GlobalProvider';
 import AceEditor from "react-ace";
 import "ace-builds/src-noconflict/mode-json5";
 import "ace-builds/src-noconflict/theme-monokai";
+import DropDown from '../components/DropDown';
 
 let code = `{
   "data": {
-    "name": "zzzzz",
-    "job": "zion resident"
+    "userId": 111,
+    "id": 12,
+    "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+    "body":"quia et suscipit"
   },
   "headers": {
     "Accept": "application/json",
@@ -22,7 +25,7 @@ export default function Sender () {
 
   const onSubmit = e => {
     e.preventDefault();
-    let method = e.target.elements[0].value;
+    let method = e.target.elements[0].textContent;
     let url = e.target.elements[1].value;    
 
     try {
@@ -41,18 +44,10 @@ export default function Sender () {
   return (<div className="container">
     <header>
       <form onSubmit={onSubmit}>
-        <select name="method">
-          <option value="get">Get</option>
-          <option value="post">post</option>
-          <option value="put">put</option>
-          <option value="delete">delete</option>
-          <option value="patch">patch</option>
-          <option value="head">head</option>
-          <option value="options">options</option>
-        </select>
+        <DropDown data={['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS']} />
 
         <input type="url" name="url" 
-        defaultValue={window.location.search.slice(5)}
+        defaultValue={globalState.url}
         placeholder="https://jsonplaceholder.typicode.com/todos/1" required />
         <button type="submit" className="bg-inherit">Send</button>
       </form>

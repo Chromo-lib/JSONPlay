@@ -1,15 +1,20 @@
 import React, { useContext } from 'react';
 import { GlobalContext } from '../state/GlobalProvider';
 import LocalHistory from '../utils/LocalHistory';
-import BtnCopy from './BtnCopy';
-import BtnDownload from './BtnDownload';
+import BtnCopy from '../components/BtnCopy';
+import BtnDownload from '../components/BtnDownload';
 
 export default function ListHistory () {
 
   const { globalState, setGlobalState } = useContext(GlobalContext);
 
   const onClickLink = h => {
-    setGlobalState({ ...globalState, sender: { ...h.sender, isDataSubmitted: true } });
+    console.log(h);
+    setGlobalState({
+      ...globalState,
+      url: h.url,
+      sender: { ...h.sender, isDataSubmitted: true }
+    });
   }
 
   const onRemove = h => {

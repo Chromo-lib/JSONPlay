@@ -7,10 +7,10 @@ import "ace-builds/src-noconflict/theme-monokai";
 
 import formatSize from '../utils/formatSize';
 import LocalHistory from '../utils/LocalHistory';
-import Spinner from './Spinner';
+import Spinner from '../components/Spinner';
 import formatNumber from '../utils/formatNumber';
-import BtnDownload from './BtnDownload';
-import BtnCopy from './BtnCopy';
+import BtnDownload from '../components/BtnDownload';
+import BtnCopy from '../components/BtnCopy';
 
 export default function Output () {
 
