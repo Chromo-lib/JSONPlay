@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState,useEffect, useContext } from 'react';
 import { GlobalContext } from '../state/GlobalProvider';
 import AceEditor from "react-ace";
 import "ace-builds/src-noconflict/mode-json5";
@@ -26,7 +26,7 @@ export default function Sender () {
   const onSubmit = e => {
     e.preventDefault();
     let method = e.target.elements[0].textContent;
-    let url = e.target.elements[1].value;    
+    let url = e.target.elements[1].value;
 
     try {
       let data = {};
@@ -41,14 +41,18 @@ export default function Sender () {
     }
   }
 
+  useEffect(() => {
+    setGlobalState({ ...globalState, url: window.location.search.slice(5) });
+  }, []);
+
   return (<div className="container">
     <header>
       <form onSubmit={onSubmit}>
         <DropDown data={['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS']} />
 
-        <input type="url" name="url" 
-        defaultValue={globalState.url}
-        placeholder="https://jsonplaceholder.typicode.com/todos/1" required />
+        <input type="url" name="url"
+          defaultValue={globalState.url}
+          placeholder="https://jsonplaceholder.typicode.com/todos/1" required />
         <button type="submit" className="bg-inherit">Send</button>
       </form>
 

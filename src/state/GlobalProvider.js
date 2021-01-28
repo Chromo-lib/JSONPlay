@@ -4,7 +4,7 @@ import LocalHistory from '../utils/LocalHistory';
 const initState = {
   sender: {
     method: 'get',
-    url: window.location.search.slice(5),
+    url: '',
     data: {},
     headers: {
       "Accept": "application/json",

@@ -1,6 +1,6 @@
 * { box-sizing: border-box; }
 
-body { margin: 0; width: 170px; }
+body { margin: 0; width: 200px; }
 
 .container {
   width: 100%;
@@ -19,6 +19,9 @@ button {
   font-size: 12px;
   text-align: center;
   vertical-align: middle;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  cursor: pointer;
 }
 
 .w-100 {width: 100%;}
