@@ -11,11 +11,12 @@ import Spinner from '../components/Spinner';
 import formatNumber from '../utils/formatNumber';
 import BtnDownload from '../components/BtnDownload';
 import BtnCopy from '../components/BtnCopy';
+import Snackbar from '../components/Snackbar';
 
 export default function Output () {
 
   const { globalState, setGlobalState } = useContext(GlobalContext);
-  const [state, setState] = useState({ output: '', headers: '', errors: '' });
+  const [state, setState] = useState({ output: '', headers: '', errors: '', errMsg: null });
   const [currentTab, setCurrentTab] = useState('output');
   const source = axios.CancelToken.source();
   const cancelToken = source.token;
@@ -24,6 +25,7 @@ export default function Output () {
     const { url, method, data, isDataSubmitted } = globalState.sender;
 
     if (isDataSubmitted) {
+      setState({ ...state, errMsg: null });
       let startTime = Date.now();
       let options = { url, method, cancelToken };
 
@@ -55,10 +57,14 @@ export default function Output () {
             }
           });
 
-          setState({ output: rsp.data, headers: rsp.headers, errors: '' });
+          setState({ output: rsp.data, headers: rsp.headers, errors: '', errMsg: null });
         })
         .catch(e => {
-          setState({ ...state, errors: e });
+          setState({
+            ...state,
+            errMsg: sender.url + '\n' + e.message + ': Please verify error tab for more informations',
+            errors: e
+          });
           setGlobalState({ ...globalState, sender });
         });
     }
@@ -76,8 +82,13 @@ export default function Output () {
     <header className="justify-between">
       <div>
         {Object.keys(state).map((tabName) => {
-          return <span className={"badge " + (tabName === currentTab ? 'txt-white' : '')}
-            key={tabName} onClick={() => { onTab(tabName) }}>{tabName}</span>
+          if (tabName !== 'errMsg') {
+            return <span className={"badge " + (tabName === currentTab ? 'txt-white' : '')}
+              key={tabName} onClick={() => { onTab(tabName) }}>{tabName}</span>
+          }
+          else {
+            return <></>
+          }
         })}
       </div>
 
@@ -99,6 +110,8 @@ export default function Output () {
         highlightActiveLine={false}
       />
     </div>
+
+    <Snackbar text={state.errMsg} />
 
     {globalState.sender.isDataSubmitted
       && <Spinner><button onClick={onCancelReq}>cancel request</button></Spinner>}

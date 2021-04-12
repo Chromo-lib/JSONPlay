@@ -20,7 +20,7 @@ let code = `{
 
 export default function Sender () {
 
-  const [state, setState] = useState(code);
+  const [editorVal, setEditorVal] = useState(code);
   const { globalState, setGlobalState } = useContext(GlobalContext);
 
   const onSubmit = e => {
@@ -30,8 +30,8 @@ export default function Sender () {
 
     try {
       let data = {};
-      if (state.length > 10) {
-        data = state.replace(/\r?\n|\r|\s+/g, '').trim();
+      if (editorVal.length > 10) {
+        data = editorVal.replace(/\r?\n|\r|\s+/g, '').trim();
         data = JSON.parse(data);
       }
       let sender = { method, url, ...data, isDataSubmitted: true };
@@ -65,8 +65,8 @@ export default function Sender () {
           theme="monokai"
           width="100%"
           height="100%"
-          value={state}
-          onChange={(newValue) => { setState(newValue) }}
+          value={editorVal}
+          onChange={(newValue) => { setEditorVal(newValue) }}
           name="ace-json-editor"
           editorProps={{ $blockScrolling: true }}
         />
