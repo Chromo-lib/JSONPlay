@@ -2,6 +2,7 @@
   max-width: 120px;
   z-index: 9999;  
 }
+
 .dropdown ul {
   display: none;
   list-style: none;
@@ -11,6 +12,8 @@
   border-top:2px solid var(--bg-main);
   border-bottom: 2px solid transparent;
 }
+
+.dropdown:hover>ul {display: block;}
 
 .dropdown ul li {
   font-size: 16px;

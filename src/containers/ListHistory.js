@@ -13,7 +13,7 @@ export default function ListHistory () {
     setGlobalState({ ...globalState, url: h.url, sender: { ...h.sender, isDataSubmitted: true } });
   }
 
-  const onAction = (actionType, h) => {
+  const onAction = (actionType, h) => {    
     switch (actionType) {
       case 'remove':
         if (window.confirm('Are you sure you want to delete? \n' + h.url)) {
@@ -25,7 +25,9 @@ export default function ListHistory () {
         break;
 
       case 'copy':
-        copyToClipboard(globalState.sender.url);
+        if (window.confirm('Copy url? \n' + h.url)) {
+          copyToClipboard(h.url);
+        }        
         break;
 
       default:
@@ -43,8 +45,8 @@ export default function ListHistory () {
       </div>
 
       <div className="vertical-align box-shad-none">
-        <BtnDownload data={JSON.stringify(globalState.history)} />
-        <BtnCopy data={globalState.history} />
+        <BtnDownload data={JSON.stringify(globalState.history)} text="Export List Of History" />
+        <BtnCopy data={globalState.history} text="Copy List Of History" />
       </div>
     </header>
 
@@ -54,20 +56,20 @@ export default function ListHistory () {
         {globalState.history.length > 0 && globalState.history.map((h, i) => <li className="vertical-align p-15 border-bottom" key={i}>
           <div className="drop-menu">
             <button type="button">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" stroke="currentColor">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </button>
 
-            <ul className="drop-menu-items">
+            <ul className="drop-menu-items fs-14 ltsp2">
               <li onClick={() => { onAction('copy', h) }}>
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#fff">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="#fff">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
                 </svg> copy
               </li>
 
               <li onClick={() => { onAction('remove', h) }}>
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="#E91E63">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="#E91E63">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                 </svg> delete
               </li>

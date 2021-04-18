@@ -18,19 +18,18 @@ export default function Output () {
   const { globalState, setGlobalState } = useContext(GlobalContext);
   const [state, setState] = useState({ output: '', headers: '', errors: '', errMsg: null });
   const [currentTab, setCurrentTab] = useState('output');
-  const source = axios.CancelToken.source();
-  const cancelToken = source.token;
 
   useEffect(() => {
     const { url, method, data, isDataSubmitted } = globalState.sender;
-
+    const source = axios.CancelToken.source();
+    
     if (isDataSubmitted) {
       setState({ ...state, errMsg: null });
       let startTime = Date.now();
-      let options = { url, method, cancelToken };
+      let options = { url, method, cancelToken: source.token };
 
       if (data && Object.keys(data).length > 0) {
-        options = { url, method, data, cancelToken };
+        options = { url, method, data, cancelToken: source.token };
       }
 
       let sender = { ...globalState.sender, isDataSubmitted: false };
@@ -66,7 +65,12 @@ export default function Output () {
             errors: e
           });
           setGlobalState({ ...globalState, sender });
+          source.cancel(e.message);
         });
+
+      return () => {
+        source.cancel();
+      };
     }
   }, [globalState.sender.isDataSubmitted, globalState.sender.url]);
 
@@ -74,27 +78,23 @@ export default function Output () {
     setCurrentTab(tabName);
   }
 
-  const onCancelReq = () => {
-    source.cancel('test cancellation');
-  }
-
   return (<div className="container">
     <header className="justify-between">
       <div>
-        {Object.keys(state).map((tabName) => {
+        {Object.keys(state).map((tabName, i) => {
           if (tabName !== 'errMsg') {
             return <span className={"badge " + (tabName === currentTab ? 'txt-white' : '')}
-              key={tabName} onClick={() => { onTab(tabName) }}>{tabName}</span>
+              key={tabName + 't' + i} onClick={() => { onTab(tabName) }}>{tabName}</span>
           }
           else {
-            return <></>
+            return <div key={tabName + 't' + i}></div>
           }
         })}
       </div>
 
       <div className="vertical-align box-shad-none">
-        <BtnDownload data={JSON.stringify(state.output)} />
-        <BtnCopy data={state.output} />
+        <BtnDownload data={JSON.stringify(state.output)} text="Export Request Output" />
+        <BtnCopy data={state.output} text="Copy Request Output" />
       </div>
     </header>
 
@@ -113,7 +113,6 @@ export default function Output () {
 
     <Snackbar text={state.errMsg} />
 
-    {globalState.sender.isDataSubmitted
-      && <Spinner><button onClick={onCancelReq}>cancel request</button></Spinner>}
+    {globalState.sender.isDataSubmitted && <Spinner />}
   </div>);
 }

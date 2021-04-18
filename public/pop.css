@@ -1,6 +1,6 @@
 * { box-sizing: border-box; }
 
-body { margin: 0; width: 200px; }
+body { margin: 0; width: 210px; }
 
 .container {
   width: 100%;
@@ -11,6 +11,8 @@ body { margin: 0; width: 200px; }
   justify-content: center;
   align-items: center;
   background: #161723; 
+  color: #fff;
+  text-align: center;
 }
 
 button {
