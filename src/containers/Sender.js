@@ -1,4 +1,4 @@
-import React, { useState,useEffect, useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../state/GlobalProvider';
 import AceEditor from "react-ace";
 import "ace-builds/src-noconflict/mode-json5";
@@ -25,10 +25,10 @@ export default function Sender () {
 
   const onSubmit = e => {
     e.preventDefault();
-    let method = e.target.elements[0].textContent;
-    let url = e.target.elements[1].value;
-
     try {
+      let method = e.target.elements[0].textContent;
+      let url = e.target.elements[1].value;    
+
       let data = {};
       if (editorVal.length > 10) {
         data = editorVal.replace(/\r?\n|\r|\s+/g, '').trim();

@@ -21,8 +21,9 @@ export default function Output () {
 
   useEffect(() => {
     const { url, method, data, isDataSubmitted } = globalState.sender;
+    const { proxy, useProxy } = globalState;
     const source = axios.CancelToken.source();
-    
+
     if (isDataSubmitted) {
       setState({ ...state, errMsg: null });
       let startTime = Date.now();
@@ -33,6 +34,7 @@ export default function Output () {
       }
 
       let sender = { ...globalState.sender, isDataSubmitted: false };
+      options.url = useProxy ? proxy + url : url;
 
       axios(options)
         .then(rsp => {

@@ -4,7 +4,7 @@ import ListHistory from "./containers/ListHistory";
 import Output from "./containers/Output";
 import Sender from "./containers/Sender";
 
-const Footer = lazy(() => import("./components/Footer"));
+const Footer = lazy(() => import("./containers/Footer"));
 
 function App () {
 

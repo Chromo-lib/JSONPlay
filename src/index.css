@@ -114,7 +114,6 @@ button {
   display: flex;
   justify-content: center;
   align-items: center;
-  max-width: 150px;
   padding: 10px 15px;
   background: var(--danger);
 }
@@ -127,6 +126,23 @@ select:hover,button:hover,.badge:hover,.bg-inherit:hover {
 }
 
 .box-shad-none>* {box-shadow: none;}
+
+/***************************************/
+.modal {
+  display: none;
+  height: 100%;width: 100%;
+  background-color: #24242481;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99999;
+  font-size: 14px;
+}
+
+.modal>div {padding: 20px; min-width: 350px;}
+
+.modal input[type="url"] {padding: 15px;}
+.modal input[type="checkbox"] {flex: auto;}
 /**************************************/
 .drop-menu {position: relative; height:auto!important}
 .drop-menu button {background-color: inherit; padding: 0; margin-right: 10px;}
@@ -159,11 +175,19 @@ select:hover,button:hover,.badge:hover,.bg-inherit:hover {
 .vertical-align {display: flex; align-items: center; }
 .horizontal-align {display: flex; flex-direction: column; }
 
+.d-flex {display: flex;}
+.flex-column {flex-direction: column;}
+
 .justify-between {justify-content: space-between;}
+.justify-center {justify-content: center;}
+
+.align-center {align-items: center;}
 
 .bg-inherit {background-color: inherit; border-radius: 0;}
 .bg-bleu {background-color: #0984ff;}
 .bg-rose {    background-color: #E91E63}
+.bg-dark {background-color: var(--dark);}
+.bg-black {background-color: var(--bg-main);}
 
 .txt-yellow {color: rgb(223, 219, 0);}
 .txt-white {color: var(--white) !important;}
@@ -171,22 +195,29 @@ select:hover,button:hover,.badge:hover,.bg-inherit:hover {
 
 .txt-uppercase {text-transform: uppercase;}
 
-.w-100 {width: 100%;}
+.w-100 {width: 100% !important;}
 .h-100 {height: 100%;}
 
 .p-15 {padding: 10px 15px; }
 .p-0 {padding:0 !important; }
 .pr-0 {padding-right:0 !important; }
+.pb-10 {padding-bottom: 10px;}
 
 .mb-0 {margin-bottom: 0;}
 .mb-10 {margin-bottom: 10px;}
+.mb-30 {margin-bottom: 30px;}
 .ml-10 {margin-left: 10px;}
 .mr-10 {margin-right: 10px;}
 
 .border-bottom {border-bottom: 1px solid var(--border);}
+.border {border: 1px solid var(--border);}
+
+.border-muted {border-color: #3f3f3f;}
 
 .d-none {display: none;}
 .d-block {display: block;}
+
+.no-hover:hover {background-color: inherit;}
 /****************************/
 ::-webkit-scrollbar {
   width: 7px;
