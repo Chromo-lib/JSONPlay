@@ -2,7 +2,7 @@
   "manifest_version": 2,
   "name": "JSONPLay",
   "description": "API Testing Tool, JSON viewer and playground.",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "icons": {
     "512": "icons/512.png",
     "128": "icons/128.png",

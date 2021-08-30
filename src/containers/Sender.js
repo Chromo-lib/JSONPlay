@@ -47,10 +47,10 @@ export default function Sender () {
 
   return (<div className="container">
     <header>
-      <form onSubmit={onSubmit}>
+      <form className="w-100 vertical-align justify-between" onSubmit={onSubmit}>
         <DropDown data={['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS']} />
 
-        <input type="url" name="url"
+        <input className="w-100" type="url" name="url"
           defaultValue={globalState.url}
           placeholder="https://jsonplaceholder.typicode.com/todos/1" required />
         <button type="submit" className="bg-inherit">Send</button>

@@ -74,12 +74,10 @@ main>div {
   overflow: auto;
 }
 
-form {width: 100%; height:100%; display:flex;}
-form>* {flex: 1 1 33.33%; }
-input {flex: 1 1 100%; }
+input,button,select,textarea {background-color: inherit; color:inherit; border:0; outline: none;}
+select, input,textarea { padding: 0 15px; border-right: 2px solid var(--border);}
 
-input,button,select {background-color: inherit; color:inherit; border:0; outline: none;}
-select, input { padding: 0 15px; border-right: 2px solid var(--border);}
+textarea {border: 2px solid var(--hover);}
 
 select option {
   background-color: var(--bg-main);
@@ -131,7 +129,7 @@ select:hover,button:hover,.badge:hover,.bg-inherit:hover {
 .modal {
   display: none;
   height: 100%;width: 100%;
-  background-color: #24242481;
+  background-color: #2424244d;
   position: fixed;
   top: 0;
   left: 0;
@@ -139,10 +137,16 @@ select:hover,button:hover,.badge:hover,.bg-inherit:hover {
   font-size: 14px;
 }
 
-.modal>div {padding: 20px; min-width: 350px;}
+.modal>div {
+  padding: 20px;
+   width: 80%; 
+   max-width: 100%;
+   max-height: 100%; 
+  box-shadow: 0 3px 1px -2px rgb(0 0 0/20%),0 2px 2px 0 rgb(0 0 0/14%),0 1px 5px 0 rgb(0 0 0/12%);
+overflow: auto;}
 
 .modal input[type="url"] {padding: 15px;}
-.modal input[type="checkbox"] {flex: auto;}
+.modal input[type="checkbox"] {flex: auto; vertical-align: middle;}
 /**************************************/
 .drop-menu {position: relative; height:auto!important}
 .drop-menu button {background-color: inherit; padding: 0; margin-right: 10px;}
@@ -172,6 +176,12 @@ select:hover,button:hover,.badge:hover,.bg-inherit:hover {
   background-color: var(--hover);
 }
 /************************************/
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
 .vertical-align {display: flex; align-items: center; }
 .horizontal-align {display: flex; flex-direction: column; }
 
@@ -202,9 +212,14 @@ select:hover,button:hover,.badge:hover,.bg-inherit:hover {
 .p-0 {padding:0 !important; }
 .pr-0 {padding-right:0 !important; }
 .pb-10 {padding-bottom: 10px;}
+.pb-2 {padding-bottom: 20px;}
 
+.m-0 {margin: 0;}
 .mb-0 {margin-bottom: 0;}
 .mb-10 {margin-bottom: 10px;}
+.mt-10 {margin-top: 10px;}
+.mb-20 {margin-bottom: 20px;}
+.mt-20 {margin-top: 20px;}
 .mb-30 {margin-bottom: 30px;}
 .ml-10 {margin-left: 10px;}
 .mr-10 {margin-right: 10px;}
@@ -218,6 +233,22 @@ select:hover,button:hover,.badge:hover,.bg-inherit:hover {
 .d-block {display: block;}
 
 .no-hover:hover {background-color: inherit;}
+
+.cp {cursor: pointer;}
+/****************************/
+.scalein {
+  animation: scalein 0.25s;
+}
+
+@keyframes scalein {
+  0% {
+    transform: scale(0.5);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
 /****************************/
 ::-webkit-scrollbar {
   width: 7px;
@@ -235,4 +266,12 @@ select:hover,button:hover,.badge:hover,.bg-inherit:hover {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--muted);
+}
+
+@media screen and (max-width: 600px) {
+  .modal>div {width: 90%; height: 90%;}
+  .grid-2 {
+    display: flex;
+    flex-direction: column;
+  }
 }

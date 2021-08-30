@@ -14,7 +14,8 @@ const initState = {
   infos: { status: 200, statusText: '-', time: '0', size: '0' },
   history: LocalHistory.getAll(),
   proxy: localStorage.getItem('proxy'),
-  useProxy: localStorage.getItem('useProxy') || false
+  useProxy: false,
+  notes: null
 }
 
 const GlobalContext = createContext();

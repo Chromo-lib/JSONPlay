@@ -61,7 +61,7 @@ export default function ListHistory () {
               </svg>
             </button>
 
-            <ul className="drop-menu-items fs-14 ltsp2">
+            <ul className="drop-menu-items fs-14 ltsp2 scalein">
               <li onClick={() => { onAction('copy', h) }}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="#fff">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />

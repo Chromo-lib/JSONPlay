@@ -1,5 +1,5 @@
 .dropdown {
-  max-width: 120px;
+  width: 120px;
   z-index: 9999;  
 }
 
@@ -8,6 +8,7 @@
   list-style: none;
   margin: 0;
   padding: 0;
+  margin-top: 120px;
   background-color: var(--dark);
   border-top:2px solid var(--bg-main);
   border-bottom: 2px solid transparent;

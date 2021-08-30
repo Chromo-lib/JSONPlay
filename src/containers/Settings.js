@@ -7,52 +7,67 @@ export default function Settings ({ show, setShow }) {
 
   const [settings, setSettings] = useState({
     proxy: localStorage.getItem('proxy'),
-    useProxy: localStorage.getItem('useProxy') || false
+    useProxy: JSON.parse(localStorage.getItem('useProxy')) || false,
+    notes: localStorage.getItem('notes') || '',
   });
 
   const onchange = e => {
-    setSettings({ ...settings, [e.target.name]: e.target.type === "checkbox" ? e.target.checked : e.target.value });
+    setSettings({
+      ...settings,
+      [e.target.name]: e.target.type === "checkbox" ? e.target.checked : e.target.value
+    });
   }
 
   const onSettings = e => {
     e.preventDefault();
-    let { proxy, useProxy } = settings;
+    let { proxy, useProxy, notes } = settings;
     setGlobalState({ ...globalState, proxy, useProxy });
     localStorage.setItem('proxy', proxy);
+    localStorage.setItem('notes', notes);
     localStorage.setItem('useProxy', useProxy);
     setShow(!show);
   }
 
   return (<div className={"modal" + (show ? ' d-flex justify-center align-center' : '')}>
-    <div className="bg-dark">
+    <div className="bg-dark scalein">
 
-      <div className="d-flex justify-between border-bottom mb-10 border-muted">
+      <div className="vertical-align border-bottom justify-between mb-10 border-muted pb-2">
         <h2 className="m-0 p-0">Settings</h2>
         <button className="bg-inherit no-hover p-0 m-0" type="button" onClick={() => setShow(!show)}>x</button>
       </div>
 
-      <form className="d-flex flex-column" onSubmit={onSettings}>
-        <div className="mb-10 d-flex flex-column">
-          <label className="mb-10">URL Proxy</label>
-          <input className="w-100 bg-black border p-15 mt-10"
-            type="url"
-            name="proxy"
-            placeholder="Proxy url"
-            onChange={onchange}
-            value={settings.proxy}
-            />
-        </div>
+      <form className="w-100" onSubmit={onSettings}>
 
-        <div className="mt-10 mb-30">
-          <input type="checkbox" name="useProxy"
-            onChange={onchange}
-            checked={settings.useProxy}
-          />
-          <span>use this proxy in every request</span>
+        <div className="w-100 grid-2">
+          <div className="w-100">
+            <label htmlFor="proxy">URL Proxy</label>
+            <input className="w-100 bg-black border p-15 mt-10 mb-10"
+              type="url"
+              name="proxy"
+              placeholder="Proxy url"
+              onChange={onchange}
+              value={settings.proxy || ''}
+            />
+
+            <input type="checkbox" name="useProxy"
+              onChange={onchange}
+              checked={settings.useProxy}
+            />
+            <span className="ml-10">use this proxy in every request</span>
+          </div>
+
+          <div className="mb-10">
+            <label className="m-0 p-0" htmlFor="notes">Notes</label>
+            <textarea className="w-100 mt-10" name="notes" rows="10" cols="50"
+              onChange={onchange}
+              value={settings.notes || ''}></textarea>
+          </div>
         </div>
 
         <button type="submit" className="w-100">save and close</button>
+
       </form>
+
     </div>
   </div>);
 }
