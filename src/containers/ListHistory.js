@@ -1,19 +1,29 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { GlobalContext } from '../state/GlobalProvider';
 import LocalHistory from '../utils/LocalHistory';
-import BtnCopy from '../components/BtnCopy';
 import BtnDownload from '../components/BtnDownload';
 import copyToClipboard from '../utils/copyToClipboard';
 
 export default function ListHistory () {
 
   const { globalState, setGlobalState } = useContext(GlobalContext);
+  const [searchQuery, setSearchQuery] = useState('hel');
+
+  const onSearch = (e) => {
+    let val = e.target.value.trim();
+    setSearchQuery(val)
+    console.log(globalState.history.slice(0));
+
+    let tmp = globalState.history.slice(0);
+    tmp = tmp.filter(v => !v.url.includes(val))
+    setGlobalState({ ...globalState, history: tmp });
+  }
 
   const onClickLink = h => {
     setGlobalState({ ...globalState, url: h.url, sender: { ...h.sender, isDataSubmitted: true } });
   }
 
-  const onAction = (actionType, h) => {    
+  const onAction = (actionType, h) => {
     switch (actionType) {
       case 'remove':
         if (window.confirm('Are you sure you want to delete? \n' + h.url)) {
@@ -27,7 +37,7 @@ export default function ListHistory () {
       case 'copy':
         if (window.confirm('Copy url? \n' + h.url)) {
           copyToClipboard(h.url);
-        }        
+        }
         break;
 
       default:
@@ -36,7 +46,7 @@ export default function ListHistory () {
   }
 
   return (<div className="container">
-    <header className="p-15 pr-0 vertical-align justify-between txt-uppercase">
+    <header className="p-15 pr-0 grid-2-2-1 justify-between txt-uppercase">
       <div className="vertical-align">
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
           <path d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z" />
@@ -44,10 +54,17 @@ export default function ListHistory () {
         </svg>History ({globalState.history.length})
       </div>
 
-      <div className="vertical-align box-shad-none">
-        <BtnDownload data={JSON.stringify(globalState.history)} text="Export List Of History" />
-        <BtnCopy data={globalState.history} text="Copy List Of History" />
-      </div>
+      <form className="h-100 w-100">
+        <intput className="h-100 w-100"
+          type="search"
+          name="url"
+          value={searchQuery}
+          onChange={onSearch}
+        />
+      </form>
+
+
+      <BtnDownload data={JSON.stringify(globalState.history)} text="Export List Of History" />
     </header>
 
     <div className="content">
@@ -57,14 +74,14 @@ export default function ListHistory () {
           <div className="drop-menu">
             <button type="button">
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </button>
 
             <ul className="drop-menu-items fs-14 ltsp2 scalein">
               <li onClick={() => { onAction('copy', h) }}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="#fff">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
                 </svg> copy
               </li>
 
@@ -87,5 +104,5 @@ export default function ListHistory () {
         </li>)}
       </ul>
     </div>
-  </div>);
+  </div >);
 }

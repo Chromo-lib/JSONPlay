@@ -74,7 +74,8 @@ main>div {
   overflow: auto;
 }
 
-input,button,select,textarea {background-color: inherit; color:inherit; border:0; outline: none;}
+input,button,select,textarea { background-color: inherit; color:inherit; border:0; outline: none;}
+
 select, input,textarea { padding: 0 15px; border-right: 2px solid var(--border);}
 
 textarea {border: 2px solid var(--hover);}
@@ -180,6 +181,12 @@ overflow: auto;}
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
+}
+
+.grid-2-2-1 {
+  display: grid;
+  grid-template-columns: 8fr 9fr 1fr;
+  gap: 10px;
 }
 
 .vertical-align {display: flex; align-items: center; }

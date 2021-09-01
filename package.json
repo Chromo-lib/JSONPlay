@@ -1,6 +1,6 @@
 {
   "name": "jsonplay",
-  "version": "1.0.7",
+  "version": "1.1.0",
   "private": true,
   "dependencies": {
     "axios": "^0.21.1",

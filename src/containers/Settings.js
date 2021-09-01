@@ -6,6 +6,7 @@ export default function Settings ({ show, setShow }) {
   const { globalState, setGlobalState } = useContext(GlobalContext);
 
   const [settings, setSettings] = useState({
+    useBookmarks: JSON.parse(localStorage.getItem('useBookmarks')) || false,
     proxy: localStorage.getItem('proxy'),
     useProxy: JSON.parse(localStorage.getItem('useProxy')) || false,
     notes: localStorage.getItem('notes') || '',
@@ -20,11 +21,14 @@ export default function Settings ({ show, setShow }) {
 
   const onSettings = e => {
     e.preventDefault();
-    let { proxy, useProxy, notes } = settings;
-    setGlobalState({ ...globalState, proxy, useProxy });
+    let { proxy, useProxy, useBookmarks, notes } = settings;
+    setGlobalState({ ...globalState, proxy, useProxy, useBookmarks });
+
     localStorage.setItem('proxy', proxy);
     localStorage.setItem('notes', notes);
+    localStorage.setItem('useBookmarks', useBookmarks);
     localStorage.setItem('useProxy', useProxy);
+
     setShow(!show);
   }
 
@@ -49,11 +53,23 @@ export default function Settings ({ show, setShow }) {
               value={settings.proxy || ''}
             />
 
-            <input type="checkbox" name="useProxy"
-              onChange={onchange}
-              checked={settings.useProxy}
-            />
-            <span className="ml-10">use this proxy in every request</span>
+            <div>
+              <input type="checkbox" name="useProxy"
+                onChange={onchange}
+                checked={settings.useProxy}
+              />
+
+              <span className="ml-10">use this proxy in every request</span>
+            </div>
+
+            <div>
+              <input type="checkbox" name="useBookmarks"
+                onChange={onchange}
+                checked={settings.useBookmarks}
+              />
+
+              <span className="ml-10">Store all urls into a folder (Check Bookmarks)</span>
+            </div>
           </div>
 
           <div className="mb-10">

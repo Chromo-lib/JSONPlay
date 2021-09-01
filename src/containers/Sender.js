@@ -4,6 +4,7 @@ import AceEditor from "react-ace";
 import "ace-builds/src-noconflict/mode-json5";
 import "ace-builds/src-noconflict/theme-monokai";
 import DropDown from '../components/DropDown';
+import Bookmarks from '../utils/Bookmarks';
 
 let code = `{
   "data": {
@@ -23,17 +24,22 @@ export default function Sender () {
   const [editorVal, setEditorVal] = useState(code);
   const { globalState, setGlobalState } = useContext(GlobalContext);
 
-  const onSubmit = e => {
+  const onSubmit = async e => {
     e.preventDefault();
     try {
       let method = e.target.elements[0].textContent;
-      let url = e.target.elements[1].value;    
+      let url = e.target.elements[1].value;
 
       let data = {};
       if (editorVal.length > 10) {
         data = editorVal.replace(/\r?\n|\r|\s+/g, '').trim();
         data = JSON.parse(data);
       }
+
+      if(globalState.useBookmarks) {
+        await Bookmarks.add(new URL(url).hostname, url)
+      }
+
       let sender = { method, url, ...data, isDataSubmitted: true };
       setGlobalState({ ...globalState, sender });
     } catch (error) {
@@ -55,7 +61,6 @@ export default function Sender () {
           placeholder="https://jsonplaceholder.typicode.com/todos/1" required />
         <button type="submit" className="bg-inherit">Send</button>
       </form>
-
     </header>
 
     <div className="content p-0">
