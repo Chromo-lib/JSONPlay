@@ -88,6 +88,13 @@ select option {
 
 select,button {cursor: pointer; text-transform: uppercase; letter-spacing: 1px;}
 
+.list-history input {
+  height: 40px;
+  padding: 5px 15px;
+  border: 0 !important;
+  background-color: var(--muted) !important;
+}
+
 ul {list-style: none; margin: 0; padding: 0;}
 
 #ace-json-editor {    font-size: 16px !important;}
@@ -148,6 +155,12 @@ overflow: auto;}
 
 .modal input[type="url"] {padding: 15px;}
 .modal input[type="checkbox"] {flex: auto; vertical-align: middle;}
+
+.modal h4 {
+  font-size: 18px;
+  color: #00bcd4;
+  margin-top: 0;
+}
 /**************************************/
 .drop-menu {position: relative; height:auto!important}
 .drop-menu button {background-color: inherit; padding: 0; margin-right: 10px;}
@@ -181,12 +194,6 @@ overflow: auto;}
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
-}
-
-.grid-2-2-1 {
-  display: grid;
-  grid-template-columns: 8fr 9fr 1fr;
-  gap: 10px;
 }
 
 .vertical-align {display: flex; align-items: center; }

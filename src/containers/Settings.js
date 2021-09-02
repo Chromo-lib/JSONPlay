@@ -1,6 +1,9 @@
 import React, { useContext, useState } from 'react';
 import { GlobalContext } from '../state/GlobalProvider';
 
+import { faCogs, faFolder, faLink, faStickyNote } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 export default function Settings ({ show, setShow }) {
 
   const { globalState, setGlobalState } = useContext(GlobalContext);
@@ -36,15 +39,19 @@ export default function Settings ({ show, setShow }) {
     <div className="bg-dark scalein">
 
       <div className="vertical-align border-bottom justify-between mb-10 border-muted pb-2">
-        <h2 className="m-0 p-0">Settings</h2>
+        <h2 className="m-0 p-0"><FontAwesomeIcon icon={faCogs} /> Settings</h2>
         <button className="bg-inherit no-hover p-0 m-0" type="button" onClick={() => setShow(!show)}>x</button>
       </div>
 
       <form className="w-100" onSubmit={onSettings}>
 
         <div className="w-100 grid-2">
+
+
           <div className="w-100">
-            <label htmlFor="proxy">URL Proxy</label>
+
+            <h4 className="m-0"><FontAwesomeIcon icon={faLink} />  Proxy</h4>
+
             <input className="w-100 bg-black border p-15 mt-10 mb-10"
               type="url"
               name="proxy"
@@ -53,7 +60,7 @@ export default function Settings ({ show, setShow }) {
               value={settings.proxy || ''}
             />
 
-            <div>
+            <div className="mb-20">
               <input type="checkbox" name="useProxy"
                 onChange={onchange}
                 checked={settings.useProxy}
@@ -62,18 +69,22 @@ export default function Settings ({ show, setShow }) {
               <span className="ml-10">use this proxy in every request</span>
             </div>
 
+
             <div>
-              <input type="checkbox" name="useBookmarks"
+              <h4 className="mb-10"><FontAwesomeIcon icon={faFolder} />  Bookmarks</h4>
+
+              <input type="checkbox"
+                name="useBookmarks"
                 onChange={onchange}
                 checked={settings.useBookmarks}
               />
 
-              <span className="ml-10">Store all urls into a folder (Check Bookmarks)</span>
+              <span className="ml-10">Store all urls into a Bookmarks bar</span>
             </div>
           </div>
 
           <div className="mb-10">
-            <label className="m-0 p-0" htmlFor="notes">Notes</label>
+            <h4 className="m-0"><FontAwesomeIcon icon={faStickyNote} />  Notes</h4>
             <textarea className="w-100 mt-10" name="notes" rows="10" cols="50"
               onChange={onchange}
               value={settings.notes || ''}></textarea>

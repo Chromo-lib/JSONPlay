@@ -6,6 +6,9 @@ import "ace-builds/src-noconflict/theme-monokai";
 import DropDown from '../components/DropDown';
 import Bookmarks from '../utils/Bookmarks';
 
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 let code = `{
   "data": {
     "userId": 111,
@@ -36,7 +39,7 @@ export default function Sender () {
         data = JSON.parse(data);
       }
 
-      if(globalState.useBookmarks) {
+      if (globalState.useBookmarks) {
         await Bookmarks.add(new URL(url).hostname, url)
       }
 
@@ -59,7 +62,9 @@ export default function Sender () {
         <input className="w-100" type="url" name="url"
           defaultValue={globalState.url}
           placeholder="https://jsonplaceholder.typicode.com/todos/1" required />
-        <button type="submit" className="bg-inherit">Send</button>
+        <button type="submit" className="bg-inherit">
+          <FontAwesomeIcon icon={faPaperPlane} /> <span className="ml-10">Send</span>
+        </button>
       </form>
     </header>
 

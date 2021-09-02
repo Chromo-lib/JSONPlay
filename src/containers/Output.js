@@ -95,8 +95,8 @@ export default function Output () {
       </div>
 
       <div className="vertical-align box-shad-none">
-        <BtnDownload data={JSON.stringify(state.output)} text="Export Request Output" />
-        <BtnCopy data={state.output} text="Copy Request Output" />
+        <BtnCopy data={state.output} text="Copy Response" />
+        <BtnDownload data={JSON.stringify(state.output)} text="Export Response" />
       </div>
     </header>
 
