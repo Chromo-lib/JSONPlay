@@ -1,5 +1,6 @@
 import React, { createContext, useState } from 'react';
 import LocalHistory from '../utils/LocalHistory';
+import LocalSettings from '../utils/LocalSettings';
 
 const localHistory = LocalHistory.getAll();
 
@@ -13,10 +14,13 @@ const initState = {
   },
   infos: { status: 200, statusText: '-', time: '0', size: '0' },
   history: LocalHistory.getAll(),
-  useBookmarks: localStorage.getItem('useBookmarks') || false,
-  useProxy: localStorage.getItem('useProxy') || false,
-  proxy: localStorage.getItem('proxy'),
-  notes: null
+  settings: {
+    timeout: +LocalSettings.getOne('timeout') || 0,
+    useBookmarks: LocalSettings.getOne('useBookmarks') || false,
+    useProxy: LocalSettings.getOne('useProxy') || false,
+    proxy: LocalSettings.getOne('proxy') || '',
+    notes: LocalSettings.getOne('notes') || ''
+  }
 }
 
 const GlobalContext = createContext();

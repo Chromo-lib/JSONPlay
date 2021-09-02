@@ -4,8 +4,10 @@ export default class LocalHistory {
 
   static add (request) {
     let hstory = this.getAll();
-    hstory.unshift(request);
-    localStorage.setItem(LocalHistoryName, JSON.stringify(hstory));
+    if(!hstory.some(h => h.sender.method === request.method && h.url === request.url)) {
+      hstory.unshift(request);
+      localStorage.setItem(LocalHistoryName, JSON.stringify(hstory));
+    }
   }
 
   static remove (request) {

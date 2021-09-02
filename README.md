@@ -12,5 +12,12 @@ Modern Browser extension for testing REST APIS Inspired by Insomnia
 
 ![](capture.PNG)
 
+### Notes
+- Free Proxies:
+  - [alloworigin](https://github.com/Eiledon/alloworigin)
+  - [whateverorigin](http://www.whateverorigin.org/)
+  - [allorigins](https://allorigins.win/)
+  - [thingproxy](https://github.com/Freeboard/thingproxy)
+
 # License
 MIT

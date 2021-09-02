@@ -21,13 +21,13 @@ export default function Output () {
 
   useEffect(() => {
     const { url, method, data, isDataSubmitted } = globalState.sender;
-    const { proxy, useProxy } = globalState;
+    const { proxy, useProxy, timeout } = globalState.settings;
     const source = axios.CancelToken.source();
 
     if (isDataSubmitted) {
       setState({ ...state, errMsg: null });
       let startTime = Date.now();
-      let options = { url, method, cancelToken: source.token };
+      let options = { timeout, url, method, cancelToken: source.token };
 
       if (data && Object.keys(data).length > 0) {
         options = { url, method, data, cancelToken: source.token };

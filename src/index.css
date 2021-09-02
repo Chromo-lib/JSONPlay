@@ -76,6 +76,8 @@ main>div {
 
 input,button,select,textarea { background-color: inherit; color:inherit; border:0; outline: none;}
 
+input:-internal-autofill-selected {background-color: inherit;}
+
 select, input,textarea { padding: 0 15px; border-right: 2px solid var(--border);}
 
 textarea {border: 2px solid var(--hover);}

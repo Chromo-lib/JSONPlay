@@ -3,17 +3,13 @@ import { GlobalContext } from '../state/GlobalProvider';
 
 import { faCogs, faFolder, faLink, faStickyNote } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import LocalSettings from '../utils/LocalSettings';
 
 export default function Settings ({ show, setShow }) {
 
   const { globalState, setGlobalState } = useContext(GlobalContext);
 
-  const [settings, setSettings] = useState({
-    useBookmarks: JSON.parse(localStorage.getItem('useBookmarks')) || false,
-    proxy: localStorage.getItem('proxy'),
-    useProxy: JSON.parse(localStorage.getItem('useProxy')) || false,
-    notes: localStorage.getItem('notes') || '',
-  });
+  const [settings, setSettings] = useState(globalState.settings);
 
   const onchange = e => {
     setSettings({
@@ -24,14 +20,8 @@ export default function Settings ({ show, setShow }) {
 
   const onSettings = e => {
     e.preventDefault();
-    let { proxy, useProxy, useBookmarks, notes } = settings;
-    setGlobalState({ ...globalState, proxy, useProxy, useBookmarks });
-
-    localStorage.setItem('proxy', proxy);
-    localStorage.setItem('notes', notes);
-    localStorage.setItem('useBookmarks', useBookmarks);
-    localStorage.setItem('useProxy', useProxy);
-
+    setGlobalState({ ...globalState, settings });
+    LocalSettings.setAll(settings)
     setShow(!show);
   }
 
@@ -67,8 +57,20 @@ export default function Settings ({ show, setShow }) {
               <span className="ml-10">use this proxy in every request</span>
             </div>
 
+            <div className="mb-10">
+              <h4 className="mb-10"><FontAwesomeIcon icon={faFolder} />  Reponse timeout</h4>
 
-            <div>
+              <input
+                className="w-100 border border-muted p-15"
+                type="number"
+                name="timeout"
+                onChange={onchange}
+                placeholder="default: 0ms"
+              />
+            </div>
+
+
+            <div className="mb-10">
               <h4 className="mb-10"><FontAwesomeIcon icon={faFolder} />  Bookmarks</h4>
 
               <input type="checkbox"
@@ -78,7 +80,7 @@ export default function Settings ({ show, setShow }) {
               />
 
               <span className="ml-10">Store all urls into a Bookmarks bar</span>
-            </div>
+            </div>            
           </div>
 
           <div className="mb-10">
