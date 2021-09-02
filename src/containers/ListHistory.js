@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { GlobalContext } from '../state/GlobalProvider';
 import LocalHistory from '../utils/LocalHistory';
 import BtnDownload from '../components/BtnDownload';
@@ -48,6 +48,10 @@ export default function ListHistory () {
         break;
     }
   }
+
+  useEffect(() => {
+    if (globalState.history && globalState.history.length > 0) setTmpHistory(globalState.history)
+  }, [globalState.history]);
 
   return (<div className="container">
     <header className="p-15 pr-0 d-flex justify-between txt-uppercase">

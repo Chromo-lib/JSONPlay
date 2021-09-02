@@ -4,14 +4,16 @@ chrome = isChrome ? chrome : browser;
 export default class Bookmarks {
   static async add (title, url) {
     return new Promise(async (resolve) => {
-      let result = await this.search()
+
+      let result = await this.search();
+
       if (result && result.length > 0) {
         let res = await this.newBk(result[0].id, title, url)
         resolve(res);
       }
       else {
-        await this.createFolder();
-        let res = await this.newBk(result[0].id, title, url)
+        let folderId = await this.createFolder();
+        let res = await this.newBk(folderId, title, url)
         resolve(res)
       }
     });
@@ -26,14 +28,31 @@ export default class Bookmarks {
   }
 
   static async newBk (parentId, title, url) {
-    return new Promise(resolve => {
-      chrome.bookmarks.create({ parentId, title, url }, () => { resolve(true); });
-    })
+    return new Promise(async (resolve) => {
+      let children = await this.getChildren(parentId)
+
+      if (children && children.length > 0 && !children.some(obj => obj.url === url)) {
+        chrome.bookmarks.create({ parentId, title, url }, () => { resolve(true); });
+      }
+
+      if (children && children.length < 1) {
+        chrome.bookmarks.create({ parentId, title, url }, () => { resolve(true); });
+      }
+
+    });
   }
 
   static async createFolder () {
     return new Promise(resolve => {
-      chrome.bookmarks.create({ 'parentId': "1", 'title': 'JSONPlay' }, () => { resolve(true); })
-    })
+      chrome.bookmarks.create({ 'parentId': "1", 'title': 'JSONPlay' }, ({ id }) => {
+        resolve(id);
+      });
+    });
+  }
+
+  static async getChildren (parentId) {
+    return new Promise(resolve => {
+      chrome.bookmarks.getChildren(parentId, (children) => { resolve(children); })
+    });
   }
 }

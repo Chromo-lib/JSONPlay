@@ -46,8 +46,6 @@ export default function Settings ({ show, setShow }) {
       <form className="w-100" onSubmit={onSettings}>
 
         <div className="w-100 grid-2">
-
-
           <div className="w-100">
 
             <h4 className="m-0"><FontAwesomeIcon icon={faLink} />  Proxy</h4>

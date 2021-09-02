@@ -38,13 +38,14 @@ export default function Sender () {
         data = editorVal.replace(/\r?\n|\r|\s+/g, '').trim();
         data = JSON.parse(data);
       }
+      
+      let sender = { method, url, ...data, isDataSubmitted: true };
+      setGlobalState({ ...globalState, sender });
 
       if (globalState.useBookmarks) {
         await Bookmarks.add(new URL(url).hostname, url)
       }
 
-      let sender = { method, url, ...data, isDataSubmitted: true };
-      setGlobalState({ ...globalState, sender });
     } catch (error) {
       console.log(error);
     }

@@ -13,10 +13,10 @@ const initState = {
   },
   infos: { status: 200, statusText: '-', time: '0', size: '0' },
   history: LocalHistory.getAll(),
-  useBookmarks:false,
+  useBookmarks: localStorage.getItem('useBookmarks') || false,
+  useProxy: localStorage.getItem('useProxy') || false,
   proxy: localStorage.getItem('proxy'),
-  useProxy: false,
-  notes: null  
+  notes: null
 }
 
 const GlobalContext = createContext();
