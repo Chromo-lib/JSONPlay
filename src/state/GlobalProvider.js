@@ -19,7 +19,8 @@ const initState = {
     useBookmarks: LocalSettings.getOne('useBookmarks') || false,
     useProxy: LocalSettings.getOne('useProxy') || false,
     proxy: LocalSettings.getOne('proxy') || '',
-    notes: LocalSettings.getOne('notes') || ''
+    notes: LocalSettings.getOne('notes') || '',
+    theme: LocalSettings.getOne('theme') || ''
   }
 }
 

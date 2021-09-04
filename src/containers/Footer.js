@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { GlobalContext } from "../state/GlobalProvider";
-import Settings from "./Settings";
+import Settings from "./settings/Settings";
 
 import { faBomb, faFolder, faInfoCircle, faCogs } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

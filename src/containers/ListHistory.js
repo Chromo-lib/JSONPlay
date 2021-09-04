@@ -39,9 +39,7 @@ export default function ListHistory () {
         break;
 
       case 'copy':
-        if (window.confirm('Copy url? \n' + h.url)) {
-          copyToClipboard(h.url);
-        }
+        copyToClipboard(h.url);
         break;
 
       default:
