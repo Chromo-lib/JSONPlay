@@ -1,8 +1,5 @@
 import React, { useContext, useState } from 'react';
 import { GlobalContext } from '../../state/GlobalProvider';
-
-import { faStickyNote } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import LocalSettings from '../../utils/LocalSettings';
 
 export default function FormSettings () {
@@ -24,8 +21,8 @@ export default function FormSettings () {
   }
 
   return (<form className="w-100" onSubmit={onSettings}>
-    <h5><FontAwesomeIcon icon={faStickyNote} />Notes</h5>
-    <textarea className="h-100 w-100 mt-10" name="notes" rows="15" cols="50"
+    <h5>save some Notes</h5>
+    <textarea className="h-100 bg-black border w-100 mt-10" name="notes" rows="15" cols="50"
       onChange={onchange}
       value={settings.notes || ''}></textarea>
     <button type="submit">save</button>

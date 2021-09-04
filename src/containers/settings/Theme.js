@@ -1,42 +1,34 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import { GlobalContext } from '../../state/GlobalProvider';
-
-import { faLink } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import LocalSettings from '../../utils/LocalSettings';
 
 export default function Theme () {
 
   const { globalState, setGlobalState } = useContext(GlobalContext);
-  const [settings, setSettings] = useState(globalState.settings);
+  const themes = [
+    'light',
+    'dark',
+    'blue'
+  ];
 
-  const onchange = e => {
-    setSettings({
-      ...settings,
-      [e.target.name]: e.target.type === "checkbox" ? e.target.checked : e.target.value
-    });
-  }
+  const onTheme = theme => {
+    const settings = { ...globalState.settings, theme }
+    const editor = { ...globalState.editor, theme: theme === 'dark' || theme === 'blue' ? 'monokai' : 'eclipse' }
 
-  const onSettings = e => {
-    e.preventDefault();
-    setGlobalState({ ...globalState, settings });
+    setGlobalState({ ...globalState, settings, editor });
     LocalSettings.setAll(settings)
+    document.documentElement.setAttribute('data-theme', theme);
   }
 
-  return (<form className="w-100" onSubmit={onSettings}>
-    
-    <h5><FontAwesomeIcon icon={faLink} />  Proxy</h5>    
+  return (<div className="w-100">
 
-    <input className="w-100 bg-black border p-15 mt-10 mb-10"
-      type="url"
-      name="proxy"
-      placeholder="Proxy url"
-      onChange={onchange}
-      value={settings.proxy || ''}
-    />
+    <h5>Choose either the light or dark theme for the JSONPlay app.</h5>
 
-    <span className="ml-10">use this proxy for every request</span>
-
-    <button type="submit">save</button>
-  </form>);
+    <ul className="theme-choose mt-20">
+      {themes.map(t => <li
+        className={t + "-theme" + (globalState.settings.theme === t ? ' border-blue' : '')}
+        key={t}
+        onClick={() => { onTheme(t) }}></li>)}
+    </ul>
+  </div>);
 }

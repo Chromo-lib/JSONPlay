@@ -1,13 +1,15 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../state/GlobalProvider';
 import AceEditor from "react-ace";
-import "ace-builds/src-noconflict/mode-json5";
-import "ace-builds/src-noconflict/theme-monokai";
 import DropDown from '../components/DropDown';
 import Bookmarks from '../utils/Bookmarks';
 
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+import "ace-builds/src-noconflict/mode-json5";
+import "ace-builds/src-noconflict/theme-monokai";
+import "ace-builds/src-noconflict/theme-eclipse";
 
 let code = `{
   "data": {
@@ -73,7 +75,7 @@ export default function Sender () {
       <div className="editor h-100">
         <AceEditor
           mode="json5"
-          theme="monokai"
+          theme={globalState.editor.theme}
           width="100%"
           height="100%"
           value={editorVal}

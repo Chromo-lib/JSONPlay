@@ -2,8 +2,6 @@ import React, { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../state/GlobalProvider';
 import axios from 'axios';
 import AceEditor from "react-ace";
-import "ace-builds/src-noconflict/mode-json5";
-import "ace-builds/src-noconflict/theme-monokai";
 
 import formatSize from '../utils/formatSize';
 import LocalHistory from '../utils/LocalHistory';
@@ -12,6 +10,10 @@ import formatNumber from '../utils/formatNumber';
 import BtnDownload from '../components/BtnDownload';
 import BtnCopy from '../components/BtnCopy';
 import Snackbar from '../components/Snackbar';
+
+import "ace-builds/src-noconflict/mode-json5";
+import "ace-builds/src-noconflict/theme-monokai";
+import "ace-builds/src-noconflict/theme-eclipse";
 
 export default function Output () {
 
@@ -103,7 +105,7 @@ export default function Output () {
     <div className="content p-0">
       <AceEditor
         mode="json5"
-        theme="monokai"
+        theme={globalState.editor.theme}
         width="100%"
         height="100%"
         value={JSON.stringify(state[currentTab], '\n', 2)}

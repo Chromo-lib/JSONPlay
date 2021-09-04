@@ -4,6 +4,9 @@ import LocalSettings from '../utils/LocalSettings';
 
 const localHistory = LocalHistory.getAll();
 
+const appTheme = LocalSettings.getOne('theme') || 'dark';
+document.documentElement.setAttribute('data-theme', appTheme);
+
 const initState = {
   sender: localHistory[0] ? localHistory[0].sender : {
     method: 'get',
@@ -20,7 +23,11 @@ const initState = {
     useProxy: LocalSettings.getOne('useProxy') || false,
     proxy: LocalSettings.getOne('proxy') || '',
     notes: LocalSettings.getOne('notes') || '',
-    theme: LocalSettings.getOne('theme') || ''
+    theme: appTheme
+  },
+  editor: {
+    theme: appTheme === 'dark' || appTheme === 'blue' ? 'monokai' : 'eclipse',
+    fontSize: 16
   }
 }
 
