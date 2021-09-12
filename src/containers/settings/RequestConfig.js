@@ -4,6 +4,7 @@ import { GlobalContext } from '../../state/GlobalProvider';
 import { faFolder } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import LocalSettings from '../../utils/LocalSettings';
+import Switch from '../../components/Switch';
 
 export default function FormSettings () {
 
@@ -11,6 +12,7 @@ export default function FormSettings () {
   const [settings, setSettings] = useState(globalState.settings);
 
   const onchange = e => {
+    console.log(e.target.checked,e.target.value);
     setSettings({
       ...settings,
       [e.target.name]: e.target.type === "checkbox" ? e.target.checked : e.target.value
@@ -26,36 +28,46 @@ export default function FormSettings () {
   return (<form className="w-100" onSubmit={onSettings}>
     <h5><FontAwesomeIcon icon={faFolder} />  Request</h5>
 
-    <div className="mb-20">
-      <label htmlFor="proxy">proxy</label>
-      <input className="w-100 bg-black border p-15 mt-10 mb-10"
-        type="url"
-        name="proxy"
-        placeholder="Proxy url"
-        onChange={onchange}
-        value={settings.proxy || ''}
-      />
+    <div className="grid-2">
 
-      <input type="checkbox" name="useProxy"
-        onChange={onchange}
-        checked={settings.useProxy}
-      />
+      <div>
+        <div className="mb-20">
+          <label htmlFor="proxy">proxy</label>
+          <input className="w-100 bg-black border p-15 mt-10 mb-10"
+            type="url"
+            name="proxy"
+            placeholder="Proxy url"
+            onChange={onchange}
+            value={settings.proxy || ''}
+          />
 
-      <span className="ml-10">use this proxy for every request</span>
+          <input type="checkbox" name="useProxy" onChange={onchange} checked={settings.useProxy} />
+          <span className="ml-10">use this proxy for every request</span>
+        </div>
+
+
+        <div>
+          <label htmlFor="timeout">timeout</label>
+          <p className="m-0 p-0 txt-muted">Set how long a request should wait for a response before timing out. To never time out, set to 0.</p>
+          <input
+            className="w-100 bg-black border p-15 mt-10 mb-10"
+            type="number"
+            name="timeout"
+            onChange={onchange}
+            placeholder="default: 0ms"
+          />
+        </div>
+      </div>
+
+      <div className="mb-20">
+        <div className="vertical-align justify-between">
+          <span>Save url to Bookmarks</span>
+          <Switch id="useBookmarks" name="useBookmarks" onChange={onchange} checked={settings.useBookmarks} />
+        </div>
+        <p className="m-0 p-0 txt-muted">Save every request url to Bookmarks bar (JSONPlay folder).</p>
+      </div>
+
     </div>
-
-
-    <div>
-      <label htmlFor="timeout">timeout</label>
-      <input
-        className="w-100 bg-black border p-15 mt-10 mb-10"
-        type="number"
-        name="timeout"
-        onChange={onchange}
-        placeholder="default: 0ms"
-      />
-    </div>
-
     <button type="submit">save</button>
   </form>);
 }
