@@ -1,5 +1,5 @@
 let isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
-chrome = isChrome ? chrome : browser;
+chrome = isChrome ? chrome: browser;
 
 export default class Bookmarks {
   static async add (title, url) {

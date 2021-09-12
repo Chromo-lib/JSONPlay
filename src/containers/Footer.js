@@ -10,7 +10,7 @@ export default function Footer () {
   const { globalState } = useContext(GlobalContext);
   const [showSettings, setShowSettings] = useState(false);
 
-  return (<footer>
+  return (<footer className="border-top">
     <div className="vertical-align">
       <a className="mr-10" href="https://github.com/haikelfazzani/json-viewer-extension">JSONPlay v1</a>
       <a className="mr-10 vertical-align" href="https://github.com/haikelfazzani/json-viewer-extension/issues">

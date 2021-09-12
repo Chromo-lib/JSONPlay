@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import RequestConfig from './RequestConfig';
 import Notes from './Notes';
 import Theme from './Theme';
+import FormSave from './FormSave';
 
 export default function Settings ({ show, setShow }) {
 
@@ -12,7 +13,8 @@ export default function Settings ({ show, setShow }) {
   const tabs = {
     Request: <RequestConfig />,
     Notes: <Notes />,
-    Theme: <Theme />
+    Theme: <Theme />,
+    Save: <FormSave />
   }
 
   return (<div className={"modal" + (show ? ' d-flex justify-center align-center' : '')}>

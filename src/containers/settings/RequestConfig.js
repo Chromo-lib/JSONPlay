@@ -12,7 +12,7 @@ export default function FormSettings () {
   const [settings, setSettings] = useState(globalState.settings);
 
   const onchange = e => {
-    console.log(e.target.checked,e.target.value);
+    console.log(e.target.checked, e.target.value);
     setSettings({
       ...settings,
       [e.target.name]: e.target.type === "checkbox" ? e.target.checked : e.target.value
@@ -45,7 +45,6 @@ export default function FormSettings () {
           <span className="ml-10">use this proxy for every request</span>
         </div>
 
-
         <div>
           <label htmlFor="timeout">timeout</label>
           <p className="m-0 p-0 txt-muted">Set how long a request should wait for a response before timing out. To never time out, set to 0.</p>
@@ -60,10 +59,14 @@ export default function FormSettings () {
       </div>
 
       <div className="mb-20">
-        <div className="vertical-align justify-between">
-          <span>Save url to Bookmarks</span>
-          <Switch id="useBookmarks" name="useBookmarks" onChange={onchange} checked={settings.useBookmarks} />
-        </div>
+        <Switch
+          text="Save url to Bookmarks"
+          id="useBookmarks"
+          name="useBookmarks"
+          onChange={onchange}
+          checked={settings.useBookmarks}
+        />
+
         <p className="m-0 p-0 txt-muted">Save every request url to Bookmarks bar (JSONPlay folder).</p>
       </div>
 

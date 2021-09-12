@@ -1,17 +1,16 @@
-.toggle-switch {
+.switch {
   position: relative;
-  margin-right: 10px;
   width: 75px;
   display: inline-block;
   vertical-align: middle;
   text-align: left;
 }
 
-.toggle-switch-checkbox {
+.switch input {
   display: none;
 }
 
-.toggle-switch-label {
+label {
   display: block;
   overflow: hidden;
   cursor: pointer;
@@ -20,15 +19,15 @@
   margin: 0;
 }
 
-.toggle-switch-inner {
+.switch-inner {
   display: block;
   width: 200%;
   margin-left: -100%;
   transition: margin 0.3s ease-in 0s;
 }
 
-.toggle-switch-inner:before,
-.toggle-switch-inner:after {
+.switch-inner:before,
+.switch-inner:after {
   display: block;
   float: left;
   width: 50%;
@@ -41,7 +40,7 @@
   box-sizing: border-box;
 }
 
-.toggle-switch-inner:before {
+.switch-inner:before {
   content: attr(data-yes);
   text-transform: uppercase;
   padding-left: 10px;
@@ -49,7 +48,7 @@
   color: var(--white);
 }
 
-.toggle-switch-inner:after {
+.switch-inner:after {
   content: attr(data-no);
   text-transform: uppercase;
   padding-right: 10px;
@@ -58,7 +57,7 @@
   text-align: right;
 }
 
-.toggle-switch-switch {
+.switch-circle {
   display: block;
   width: 24px;
   margin: 5px;
@@ -72,26 +71,26 @@
   transition: all 0.3s ease-in 0s;
 }
 
-.toggle-switch-checkbox:checked+.toggle-switch-label .toggle-switch-inner {
+.switch input:checked+label .switch-inner {
   margin-left: 0;
 }
 
-.toggle-switch-checkbox:checked+.toggle-switch-label .toggle-switch-switch {
+.switch input:checked+label .switch-circle {
   right: 0px;
 }
 
-.toggle-switch.small-switch {
+.switch.small {
   width: 40px;
 }
 
-.toggle-switch.small-switch .toggle-switch-inner:after,
-.toggle-switch.small-switch .toggle-switch-inner:before {
+.switch.small .switch-inner:after,
+.switch.small .switch-inner:before {
   content: "";
   height: 20px;
   line-height: 20px;
 }
 
-.toggle-switch.small-switch .toggle-switch-switch {
+.switch.small .switch-circle {
   width: 16px;
   right: 20px;
   margin: 2px;
