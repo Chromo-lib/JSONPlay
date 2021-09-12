@@ -20,7 +20,6 @@ const initState = {
   settings: {
     air_url: LocalSettings.getOne('air_url') || '',
     air_token: LocalSettings.getOne('air_token') || '',
-    air_local: LocalSettings.getOne('air_local') || false,
     timeout: +LocalSettings.getOne('timeout') || 0,
     useBookmarks: LocalSettings.getOne('useBookmarks') || false,
     useProxy: LocalSettings.getOne('useProxy') || false,

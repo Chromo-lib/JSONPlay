@@ -42,14 +42,18 @@ export default function Output () {
 
       (async () => {
         try {       
-          const date = new Date().toString();
           let rsp = await axios(options)
           let tmpH = globalState.history.slice(0);
           
           if (!tmpH.find(h => h.sender.method === options.method && h.url === options.url)) {
+            const date = new Date().toString();
+            
             let req = { sender, url: options.url, date };
             tmpH.unshift(req);
             LocalHistory.add(req);
+
+            // save request to airtable
+            options.date = date
             await AirService.save(options)
           }
 
