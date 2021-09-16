@@ -9,6 +9,7 @@ export default function FormSave () {
 
   const { globalState, setGlobalState } = useContext(GlobalContext);
   const [settings, setSettings] = useState(globalState.settings);
+  const [isSaved, setIsSaved] = useState(false);
 
   const onchange = e => {
     setSettings({ ...settings, [e.target.name]: e.target.value });
@@ -17,13 +18,16 @@ export default function FormSave () {
   const onSettings = e => {
     e.preventDefault();
     setGlobalState({ ...globalState, settings });
-    LocalSettings.setAll(settings)
+    setIsSaved(true)
+    LocalSettings.setAll(settings);
+
+    setTimeout(() => {
+      setIsSaved(false)
+    }, 2000);
   }
 
   return (<form onSubmit={onSettings}>
-
     <div className="grid-2">
-
       <div>
         <div>
           <label><FontAwesomeIcon icon={faLink} /> Airtable Api URL</label>
@@ -50,7 +54,6 @@ export default function FormSave () {
             required
           />
         </div>
-
       </div>
 
       <ul className="bg-black border p-15">
@@ -64,6 +67,6 @@ export default function FormSave () {
       </ul>
     </div>
 
-    <button type="submit">save</button>
+    <button type="submit">{isSaved ? 'saved' : 'save'}</button>
   </form>);
 }

@@ -6,6 +6,7 @@ import copyToClipboard from '../utils/copyToClipboard';
 
 import { faCopy, faStream, faTrash, faSearch, faChevronCircleDown } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Bookmarks from '../utils/Bookmarks';
 
 export default function ListHistory () {
 
@@ -23,8 +24,14 @@ export default function ListHistory () {
     setTmpHistory(tmp.length > 0 ? tmp : globalState.history);
   }
 
-  const onClickLink = h => {
+  const onClickLink = async h => {
     setGlobalState({ ...globalState, url: h.url, sender: { ...h.sender, isDataSubmitted: true } });
+
+    const isExist = await Bookmarks.searchByURL(h.url);
+
+    if (!isExist && globalState.settings.useBookmarks) {
+      await Bookmarks.add(new URL(h.url).hostname, h.url)
+    }
   }
 
   const onAction = (actionType, h) => {
@@ -32,9 +39,10 @@ export default function ListHistory () {
       case 'remove':
         if (window.confirm('Are you sure you want to delete? \n' + h.url)) {
           let tmp = globalState.history.slice(0);
-          tmp = tmp.filter(v => v.date !== h.date)
+          tmp = tmp.filter(v => v.url !== h.url && v.date !== h.date)
+          setTmpHistory(tmp)
           setGlobalState({ ...globalState, history: tmp });
-          LocalHistory.remove(h);
+          LocalHistory.addAll(tmp);
         }
         break;
 
@@ -49,7 +57,7 @@ export default function ListHistory () {
 
   useEffect(() => {
     if (globalState.history && globalState.history.length > 0) setTmpHistory(globalState.history)
-  }, [globalState.history]);
+  }, [globalState.history.length]);
 
   return (<div className="container">
     <header className="p-15 pr-0 d-flex justify-between txt-uppercase">

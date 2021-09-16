@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../state/GlobalProvider';
 import AceEditor from "react-ace";
 import DropDown from '../components/DropDown';
-import Bookmarks from '../utils/Bookmarks';
 
 import { faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -43,11 +42,6 @@ export default function Sender () {
       
       let sender = { method, url, ...data, isDataSubmitted: true };
       setGlobalState({ ...globalState, sender });
-
-      if (globalState.useBookmarks) {
-        await Bookmarks.add(new URL(url).hostname, url)
-      }
-
     } catch (error) {
       console.log(error);
     }

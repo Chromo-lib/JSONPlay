@@ -10,9 +10,9 @@ export default function FormSettings () {
 
   const { globalState, setGlobalState } = useContext(GlobalContext);
   const [settings, setSettings] = useState(globalState.settings);
+  const [isSaved, setIsSaved] = useState(false);
 
   const onchange = e => {
-    console.log(e.target.checked, e.target.value);
     setSettings({
       ...settings,
       [e.target.name]: e.target.type === "checkbox" ? e.target.checked : e.target.value
@@ -22,14 +22,18 @@ export default function FormSettings () {
   const onSettings = e => {
     e.preventDefault();
     setGlobalState({ ...globalState, settings });
-    LocalSettings.setAll(settings)
+    setIsSaved(true)
+    LocalSettings.setAll(settings);
+
+    setTimeout(() => {
+      setIsSaved(false)
+    }, 2000);
   }
 
   return (<form className="w-100" onSubmit={onSettings}>
     <h5><FontAwesomeIcon icon={faFolder} />  Request</h5>
 
     <div className="grid-2">
-
       <div>
         <div className="mb-20">
           <label htmlFor="proxy">proxy</label>
@@ -71,6 +75,6 @@ export default function FormSettings () {
       </div>
 
     </div>
-    <button type="submit">save</button>
+    <button type="submit">{isSaved ? 'saved' : 'save'}</button>
   </form>);
 }

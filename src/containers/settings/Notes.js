@@ -6,6 +6,7 @@ export default function FormSettings () {
 
   const { globalState, setGlobalState } = useContext(GlobalContext);
   const [settings, setSettings] = useState(globalState.settings);
+  const [isSaved, setIsSaved] = useState(false);
 
   const onchange = e => {
     setSettings({
@@ -17,7 +18,12 @@ export default function FormSettings () {
   const onSettings = e => {
     e.preventDefault();
     setGlobalState({ ...globalState, settings });
-    LocalSettings.setAll(settings)
+    setIsSaved(true)
+    LocalSettings.setAll(settings);
+
+    setTimeout(() => {
+      setIsSaved(false)
+    }, 2000);
   }
 
   return (<form className="w-100" onSubmit={onSettings}>
@@ -25,6 +31,6 @@ export default function FormSettings () {
     <textarea className="h-100 bg-black border w-100 mt-10" name="notes" rows="15" cols="50"
       onChange={onchange}
       value={settings.notes || ''}></textarea>
-    <button type="submit">save</button>
+    <button type="submit">{isSaved ? 'saved' : 'save'}</button>
   </form>);
 }

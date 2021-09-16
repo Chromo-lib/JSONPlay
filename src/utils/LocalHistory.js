@@ -1,7 +1,6 @@
 const LocalHistoryName = 'history-requests';
 
 export default class LocalHistory {
-
   static add (request) {
     let hstory = this.getAll();
     if(!hstory.some(h => h.sender.method === request.method && h.url === request.url)) {
@@ -16,9 +15,12 @@ export default class LocalHistory {
     localStorage.setItem(LocalHistoryName, JSON.stringify(hstory));
   }
 
+  static addAll (hstory) {
+    localStorage.setItem(LocalHistoryName, JSON.stringify(hstory));
+  }
+
   static getAll () {
     let hstory = localStorage.getItem(LocalHistoryName);
     return hstory ? JSON.parse(hstory) : [];
   }
-
 }

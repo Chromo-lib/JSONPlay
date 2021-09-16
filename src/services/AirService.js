@@ -7,7 +7,7 @@ export default class AirService {
     const air_url = LocalSettings.getOne('air_url')
     const token = LocalSettings.getOne('air_token')
 
-    if (air_url.length > 0 && token.length > 0) {
+    if (token && air_url.length > 0 && token.length > 0) {
 
       const fields = {
         url,
